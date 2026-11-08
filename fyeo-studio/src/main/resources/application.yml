@@ -1,0 +1,17 @@
+server:
+  port: 8089
+
+spring:
+  application:
+    name: fyeo-studio
+  servlet:
+    multipart:
+      max-file-size: 25MB
+      max-request-size: 25MB
+
+fyeo:
+  vault:
+    enabled: true
+    master-key: "EnterpriseFyeoMasterKmsKey#2026"
+    max-pixels: 500000
+    ephemeral-view-duration-seconds: 15

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F.Y.E.O Studio · Enterprise Zero-Trust Identity Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/studio.css}">
+</head>
+<body>
+    <header class="studio-header">
+        <div class="header-left">
+            <span class="logo-icon">👁️🔒</span>
+            <span class="logo-title">F.Y.E.O ECOSYSTEM</span>
+            <span class="badge-v3">v3.0 ENTERPRISE</span>
+        </div>
+        <div class="header-right">
+            <span class="status-indicator">●</span>
+            <span class="status-text">KMS / HSM ENVELOPE ACTIVE</span>
+            <span class="badge-mode">JAVA 21 LTS</span>
+        </div>
+    </header>
+
+    <main class="studio-container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1 class="hero-headline">Zero-Trust Visual AEAD Identity Shield</h1>
+            <p class="hero-subtext">
+                Physical storage perimeter defenses consistently fail. F.Y.E.O transforms sensitive customer identity documents 
+                into standards-compliant high-entropy visual static noise before they ever touch disk or S3 object storage.
+            </p>
+        </section>
+
+        <!-- Live S3 Bucket Breach Simulator -->
+        <section class="simulator-panel">
+            <div class="panel-header">
+                <div>
+                    <h2>⚡ Live Enterprise S3 Bucket Simulator</h2>
+                    <p class="panel-desc">Simulated Amazon Web Services S3 Bucket: <code>s3://bank-customer-kyc-production/evidence/</code></p>
+                </div>
+                <div class="panel-actions">
+                    <button class="btn-reset" onclick="resetS3Bucket()">🔄 Reset S3 Bucket</button>
+                    <button class="btn-hack" onclick="triggerBreachModal()">🚨 Simulate S3 Bucket Breach</button>
+                </div>
+            </div>
+
+            <div class="s3-grid">
+                <div class="s3-card" th:each="obj : ${objects}" th:id="'card-' + ${obj.key}">
+                    <div class="card-status-bar" th:classappend="${obj.mode == 'CHAMELEON' ? 'chameleon' : (obj.mode == 'STATIC' ? 'protected' : 'naked')}">
+                        <span th:if="${obj.mode == 'CHAMELEON'}">🦎 CONCEALED IN INNOCUOUS DECOY</span>
+                        <span th:if="${obj.mode == 'STATIC'}">🛡️ PROTECTED BY VISUAL AEAD (NOISE)</span>
+                        <span th:if="${obj.mode == 'NAKED'}">⚠️ NAKED PLAINTEXT ON DISK</span>
+                        <span class="size-tag" th:text="${#numbers.formatDecimal(obj.sizeBytes / 1024.0, 1, 1)} + ' KB'"></span>
+                    </div>
+
+                    <div class="card-preview-wrapper">
+                        <img th:src="@{'/api/simulator/preview'(key=${obj.key})}" 
+                             th:id="'img-' + ${obj.key}"
+                             alt="Document Preview" class="card-img" />
+                    </div>
+
+                    <div class="card-details">
+                        <div class="detail-row">
+                            <span class="label">S3 KEY:</span>
+                            <span class="val mono" th:text="${obj.key}"></span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">S3 CUSTOMER:</span>
+                            <span class="val" th:text="${obj.s3CustomerView}"></span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">S3 RECORD:</span>
+                            <span class="val mono" th:text="${obj.s3IdView}"></span>
+                        </div>
+                    </div>
+
+                    <div class="card-actions">
+                        <button th:if="${obj.mode == 'NAKED'}" 
+                                class="btn-protect" 
+                                th:data-key="${obj.key}"
+                                onclick="protectDocument(this.dataset.key, 'STATIC')">
+                            ⚡ Noise
+                        </button>
+                        <button th:if="${obj.mode == 'NAKED'}" 
+                                class="btn-chameleon" 
+                                th:data-key="${obj.key}"
+                                onclick="protectDocument(this.dataset.key, 'CHAMELEON')">
+                            🦎 Morph to Decoy
+                        </button>
+                        <button th:if="${obj.mode != 'NAKED'}" 
+                                class="btn-inspect" 
+                                th:data-key="${obj.key}"
+                                onclick="inspectDocument(this.dataset.key)">
+                            👁️ 15s Ephemeral RAM Review
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Architecture Breakdown -->
+        <section class="architecture-grid">
+            <div class="arch-card">
+                <h3>1. Ingestion Interceptor</h3>
+                <p>When customer KYC files land on your API endpoint, <code>fyeo-spring-boot-starter</code> intercepts the byte stream and executes Fisher-Yates permutation in volatile RAM.</p>
+                <code>@EnableFyeoVault</code>
+            </div>
+            <div class="arch-card">
+                <h3>2. Zero Honey-Pot Storage</h3>
+                <p>Raw bitmaps are purged from memory immediately. Filesystem and S3 buckets only store high-entropy visual static (entropy > 99.98%). Breaches yield zero legible data.</p>
+                <code>S3: Pure Static Noise</code>
+            </div>
+            <div class="arch-card">
+                <h3>3. Ephemeral Reviewer Grants</h3>
+                <p>Authorized reviewers decrypt documents inside an isolated memory container with an automatic 15-second countdown timer. RAM is wiped with zeros upon expiry.</p>
+                <code>Auto-Burn: 15s TTL</code>
+            </div>
+        </section>
+    </main>
+
+    <!-- Ephemeral Reviewer Modal -->
+    <div class="modal-backdrop" id="reviewModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>🛡️ Ephemeral Reviewer Workbench</h3>
+                <span class="timer-badge" id="countdownTimer">15 SEC REMAINING</span>
+            </div>
+            <div class="modal-body">
+                <p class="modal-notice">Restored strictly inside browser RAM via KMS Hardware Seal. Never written to disk.</p>
+                
+                <div class="modal-metadata-strip">
+                    <div class="meta-item"><span class="meta-lbl">ENVELOPE FILENAME:</span> <span class="meta-v mono" id="metaFilename">--</span></div>
+                    <div class="meta-item"><span class="meta-lbl">DECRYPTED CUSTOMER:</span> <span class="meta-v" id="metaCustomer">--</span></div>
+                    <div class="meta-item"><span class="meta-lbl">DOCUMENT TYPE:</span> <span class="meta-v mono" id="metaIdNumber">--</span></div>
+                </div>
+
+                <div class="modal-img-container">
+                    <img id="ephemeralImg" src="" alt="Restored Document" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-close" onclick="closeReviewModal()">Burn & Close Session</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- S3 Breach Simulation Modal -->
+    <div class="modal-backdrop" id="breachModal">
+        <div class="modal-box breach-box">
+            <div class="modal-header breach-header">
+                <h3>🚨 S3 BUCKET EXPOSURE FORENSICS</h3>
+                <button class="btn-close-x" onclick="closeBreachModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <p class="breach-desc">Simulating an attacker downloading files from an unauthenticated S3 bucket misconfiguration:</p>
+                <div class="forensics-table">
+                    <div class="forensics-row header">
+                        <span>Object Key</span>
+                        <span>Attacker View (What Leaks)</span>
+                        <span>F.Y.E.O Defense Status</span>
+                    </div>
+                    <div class="forensics-row" th:each="obj : ${objects}">
+                        <span class="mono" th:text="${obj.key}"></span>
+                        <span th:if="${obj.mode == 'CHAMELEON'}" class="safe-text">
+                            Innocent Asset Camouflage (Zero Suspicion). Filename &amp; PII completely hidden.
+                        </span>
+                        <span th:if="${obj.mode == 'STATIC'}" class="safe-text">
+                            Opaque Cryptographic Key. High-Entropy Visual Static Noise (Zero PII).
+                        </span>
+                        <span th:if="${obj.mode == 'NAKED'}" class="danger-text"
+                              th:text="'CRITICAL METADATA LEAK: Key reveals ' + ${obj.originalFilename} + ' (' + ${obj.customerName} + ')'">
+                        </span>
+                        <span th:if="${obj.mode == 'CHAMELEON'}">✓ CLOAKED &amp; CONCEALED</span>
+                        <span th:if="${obj.mode == 'STATIC'}">✓ OPAQUE &amp; ENCRYPTED</span>
+                        <span th:if="${obj.mode == 'NAKED'}">🚨 COMPROMISED</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-close" onclick="closeBreachModal()">Dismiss Forensics</button>
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{/js/studio.js}"></script>
+</body>
+</html>

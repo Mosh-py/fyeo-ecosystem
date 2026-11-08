@@ -1,0 +1,73 @@
+================================================================================
+F.Y.E.O ROADMAP: ENTERPRISE POLICY SOVEREIGNTY & EXTREME CONFIGURABILITY
+================================================================================
+Status: PLANNED (Future Iteration)
+Target: fyeo-spring-boot-starter & fyeo-core
+Core Philosophy: Loosen control. Give enterprise consumers 100% policy sovereignty
+over decoy images, ephemeral memory durations, and watermarking rules.
+
+--------------------------------------------------------------------------------
+1. CONFIGURABLE CARRIER ASSETS (CUSTOM DECOY COVERS)
+--------------------------------------------------------------------------------
+Problem:
+Currently, default decoy images are generated algorithmically by ChameleonDecoyEngine.
+Enterprises want their own company logos, navigation buttons, or brand assets to act
+as the carrier cover image so S3 buckets blend in 100% naturally with their brand.
+
+Target Features:
+- Add `fyeo.chameleon.carrier-directory` to FyeoProperties (supports classpath: and file: paths).
+- Load an array of enterprise PNG assets into an in-memory CarrierPool.
+- Implement `CarrierStrategy`:
+  * RANDOM_POOL: Randomly pick from customer's corporate asset pool for each document.
+  * TENANT_AWARE: Pick the carrier based on the tenant/store logo (multi-tenant support).
+  * DEFAULT_ALGORITHMIC: Fallback to F.Y.E.O built-in corporate badge if none specified.
+- Support `fyeoVaultService.protectDocumentWithEnvelope(envelope, customCarrierBytes)`
+  for explicit per-document override.
+
+--------------------------------------------------------------------------------
+2. DYNAMIC EPHEMERAL RAM DURATION (PER-DOCUMENT & PER-ROLE TTL)
+--------------------------------------------------------------------------------
+Problem:
+Currently, ephemeral reviewer workbench defaults to a static 15-second self-destruct timer.
+Compliance teams have different risk profiles: utility bills need 45s, high-risk passports
+need 10s, internal audits need 60s.
+
+Target Features:
+- Add `fyeo.viewer.default-duration-seconds` to FyeoProperties (default: 15, range: 5 - 120s).
+- Add runtime TTL support on inspection tokens:
+  `fyeoVaultService.generateInspectionToken(documentId, Duration.ofSeconds(ttl))`
+- Signed ephemeral token containing:
+  { docId, reviewerId, expiresAtTimestamp, allowedSeconds }
+- Frontend hook `useFyeoViewer({ ephemeralDurationSeconds: serverTtl })` automatically
+  respects the server-dictated duration.
+
+--------------------------------------------------------------------------------
+3. CONFIGURABLE WATERMARKING & ANTI-EXFILTRATION POLICIES
+--------------------------------------------------------------------------------
+Problem:
+Enterprises need customized forensic watermarking formats matching their internal compliance.
+
+Target Features:
+- Add `fyeo.viewer.watermark.template` to FyeoProperties:
+  Format string e.g.: "CONFIDENTIAL • %username% • %ip% • %timestamp% • %docId%"
+- Add `fyeo.viewer.watermark.color` (default: "rgba(255, 255, 255, 0.25)").
+- Add `fyeo.viewer.allow-print` (boolean, default: false).
+- Add `fyeo.viewer.watermark.density` (CENTER, TILED, DIAGONAL_REPEATED).
+
+--------------------------------------------------------------------------------
+4. PLUGGABLE KMS PROVIDER EXPANSION
+--------------------------------------------------------------------------------
+Target Features:
+- `fyeo.kms.type=aws-kms` -> Connect directly to AWS KMS with customer CMK ARN.
+- `fyeo.kms.type=hashicorp-vault` -> Connect to HashiCorp Vault transit engine.
+- `fyeo.kms.type=local` -> PBKDF2 local master key (already implemented).
+
+--------------------------------------------------------------------------------
+5. ARBITRARY BINARY ENVELOPE EXTENSIONS (PDF, DOCX, SCANS)
+--------------------------------------------------------------------------------
+- Built-in PDF page-by-page chunker for ultra-large multi-page compliance dossiers.
+- Native PDF.js canvas adapter in frontend integration guide.
+
+================================================================================
+Remember this file when resuming work on F.Y.E.O configuration architecture!
+================================================================================

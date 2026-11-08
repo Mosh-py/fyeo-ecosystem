@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>io.github.mosh-py</groupId>
+        <artifactId>fyeo-ecosystem</artifactId>
+        <version>3.0.2</version>
+    </parent>
+
+    <artifactId>fyeo-spring-boot-starter</artifactId>
+    <packaging>jar</packaging>
+
+    <name>F.Y.E.O Spring Boot Starter</name>
+    <description>Enterprise headless starter for zero-trust visual identity storage and KMS envelope encryption</description>
+    <url>https://github.com/Mosh-py/fyeo-ecosystem</url>
+
+    <dependencies>
+        <!-- F.Y.E.O Core Crypto Engine -->
+        <dependency>
+            <groupId>io.github.mosh-py</groupId>
+            <artifactId>fyeo-core</artifactId>
+        </dependency>
+
+        <!-- Spring Boot Auto-Configure & Context (Marked Optional for Zero Transitive CVE Footprint) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Logging SLF4J API -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+
+        <!-- Test -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>
