@@ -113,7 +113,7 @@ implementation 'io.github.mosh-py:fyeo-core:3.0.2'
 
 ## 3. Pattern A: Pure Java Integration (`fyeo-core`)
 
-If you are building a CLI, standalone microservice, or prefer full control without Spring magic, use the unified facade [`io.fyeo.core.FyeoVault`](file:///home/adageje-moshood/Documents/Moshood/personalSpringProject/fyeo-ecosystem/fyeo-core/src/main/java/io/fyeo/core/FyeoVault.java).
+If you are building a CLI, standalone microservice, or prefer full control without Spring magic, use the unified facade [`io.fyeo.core.FyeoVault`](https://github.com/Mosh-py/fyeo-ecosystem/blob/main/fyeo-core/src/main/java/io/fyeo/core/FyeoVault.java).
 
 ### A1. The Bill Pugh JVM Singleton Pattern
 To ensure `FyeoVault` runs as a high-performance, thread-safe singleton initialized once per JVM classloader:
@@ -401,7 +401,7 @@ public class S3KycVaultService {
 
 ## 9. Verification via Local Playpen (`fyeo-playpen`)
 
-A complete runnable testing CLI playground is provided in the repository at [`fyeo-playpen`](file:///home/adageje-moshood/Documents/Moshood/personalSpringProject/fyeo-playpen/).
+A complete runnable testing CLI playground is provided in the repository at [`fyeo-playpen`](https://github.com/Mosh-py/fyeo-ecosystem/tree/main/fyeo-playpen).
 
 To test the entire encryption and decryption lifecycle on your local terminal:
 

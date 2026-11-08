@@ -5,7 +5,7 @@
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.mosh-py/fyeo-spring-boot-starter?color=blue&label=Maven%20Central)](https://central.sonatype.com/artifact/io.github.mosh-py/fyeo-spring-boot-starter)
 [![Documentation](https://img.shields.io/badge/Docs-Live%20Portal-10b981.svg)](https://mosh-py.github.io/fyeo-ecosystem/)
 [![Java 21+](https://img.shields.io/badge/Java-21%2B-orange.svg)](https://openjdk.org/)
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/Mosh-py/fyeo-ecosystem/blob/main/LICENSE)
 [![Zero External Runtime Dependencies](https://img.shields.io/badge/fyeo--core-0%20Dependencies-brightgreen.svg)]()
 [![Java for the Street](https://img.shields.io/badge/Movement-Java%20for%20the%20Street%20%E2%9B%A3%EF%B8%8F%E2%98%95%EF%B8%8F-black.svg)]()
 
@@ -151,15 +151,15 @@ Creates a sample CAC document, cloaks it into an 18 KB PNG carrier, uncloaks it 
 
 ## 📖 Complete Documentation & Guides
 
-* 📘 [Comprehensive Developer Guide](docs/DEVELOPER_GUIDE.md) — Production architecture, Spring Boot patterns, AWS S3 integration, User PIN flows, and RAM zeroing.
-* ⚛️ [Headless Frontend Guide](docs/HEADLESS_INTEGRATION_GUIDE.md) — Production React/TypeScript hook with anti-save and memory wiping.
-* 🚀 [Maven Central Publishing Guide](docs/MAVEN_CENTRAL_PUBLISHING_GUIDE.md) — Publishing and GPG signing instructions.
+* 📘 [Comprehensive Developer Guide](DEVELOPER_GUIDE.md) — Production architecture, Spring Boot patterns, AWS S3 integration, User PIN flows, and RAM zeroing.
+* ⚛️ [Headless Frontend Guide](HEADLESS_INTEGRATION_GUIDE.md) — Production React/TypeScript hook with anti-save and memory wiping.
+* 🚀 [Maven Central Publishing Guide](MAVEN_CENTRAL_PUBLISHING_GUIDE.md) — Publishing and GPG signing instructions.
 
 ---
 
 ## 📄 License
 
-F.Y.E.O is open-source software licensed under the [Apache License, Version 2.0](LICENSE).
+F.Y.E.O is open-source software licensed under the [Apache License, Version 2.0](https://github.com/Mosh-py/fyeo-ecosystem/blob/main/LICENSE).
 
 ---
 
