@@ -3,6 +3,7 @@
 > *An open-source initiative by **Java for the Street (JFS)** — Enterprise Code, Grassroots Soul.*
 
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.mosh-py/fyeo-spring-boot-starter?color=blue&label=Maven%20Central)](https://central.sonatype.com/artifact/io.github.mosh-py/fyeo-spring-boot-starter)
+[![Documentation](https://img.shields.io/badge/Docs-Live%20Portal-10b981.svg)](https://mosh-py.github.io/fyeo-ecosystem/)
 [![Java 21+](https://img.shields.io/badge/Java-21%2B-orange.svg)](https://openjdk.org/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Zero External Runtime Dependencies](https://img.shields.io/badge/fyeo--core-0%20Dependencies-brightgreen.svg)]()
