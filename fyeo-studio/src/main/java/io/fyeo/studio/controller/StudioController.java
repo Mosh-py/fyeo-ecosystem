@@ -44,7 +44,7 @@ public class StudioController {
         try {
             // Seed a realistic bank S3 bucket with 3 simulated customer KYC documents (all initially naked)
             seedDocument("doc_001_NIN_Adeyemi.png", "Adeyemi Babatunde", "NIN: 7492 8841 0293", "NATIONAL IDENTITY SLIP");
-            seedDocument("doc_002_CAC_KudaVentures.png", "Kuda Ventures Ltd", "RC: 1827491", "CAC REGISTRATION CERTIFICATE");
+            seedDocument("doc_002_CAC_ApexVentures.png", "Apex Global Ventures Ltd", "RC: 1827491", "CAC REGISTRATION CERTIFICATE");
             seedDocument("doc_003_Passport_Chioma.png", "Chioma Okonjo", "PASSPORT: A09482711", "FEDERAL REPUBLIC OF NIGERIA");
         } catch (IOException e) {
             // Fallback for tests
