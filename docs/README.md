@@ -9,7 +9,9 @@
 [![Zero External Runtime Dependencies](https://img.shields.io/badge/fyeo--core-0%20Dependencies-brightgreen.svg)]()
 [![Java for the Street](https://img.shields.io/badge/Movement-Java%20for%20the%20Street%20%E2%9B%A3%EF%B8%8F%E2%98%95%EF%B8%8F-black.svg)]()
 
-> **F.Y.E.O (*For Your Eyes Only*)** is an institutional-grade document security and steganographic envelope encryption platform for Java and Spring Boot. It protects sensitive KYC documents (Passports, National IDs, CAC Certificates, Proof of Address) by transforming them into innocent corporate assets on physical disk and AWS S3, eradicating metadata leakage and ensuring decrypted assets exist only in volatile RAM during authorized human inspection.
+> *"You cannot stop a determined hacker from breaching the perimeter. Firewalls get misconfigured, IAM credentials leak, and zero-day exploits happen. When attackers breach your cloud storage, they expect a jackpot of customer identity documents. Instead, we deceive them into stealing harmless UI pixels: Zero readable PII. Zero metadata. Zero forensic yield."*
+
+> **F.Y.E.O (*For Your Eyes Only*)** is an institutional-grade document security and steganographic envelope encryption platform for Java and Spring Boot. Built on the doctrine that **perimeter breaches are inevitable, but data leakage is not**, it transforms sensitive KYC files (Passports, BVN/NIN printouts, CAC Incorporation Certificates) into innocent corporate PNG images before bytes ever touch physical storage, uncloaking strictly in volatile RAM with automated memory zeroing.
 
 ---
 
