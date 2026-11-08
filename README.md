@@ -153,7 +153,6 @@ Creates a sample CAC document, cloaks it into an 18 KB PNG carrier, uncloaks it 
 
 * 📘 [Comprehensive Developer Guide](docs/DEVELOPER_GUIDE.md) — Production architecture, Spring Boot patterns, AWS S3 integration, User PIN flows, and RAM zeroing.
 * ⚛️ [Headless Frontend Guide](docs/HEADLESS_INTEGRATION_GUIDE.md) — Production React/TypeScript hook with anti-save and memory wiping.
-* 🚀 [Maven Central Publishing Guide](docs/MAVEN_CENTRAL_PUBLISHING_GUIDE.md) — Publishing and GPG signing instructions.
 
 ---
 

@@ -4,7 +4,6 @@
 
 * **Deep Integrations**
   * [Headless Reviewer Hook (React)](HEADLESS_INTEGRATION_GUIDE.md)
-  * [Maven Central Publishing Guide](MAVEN_CENTRAL_PUBLISHING_GUIDE.md)
 
 * **Ecosystem & Movement**
   * [GitHub Repository ↗](https://github.com/Mosh-py/fyeo-ecosystem)
